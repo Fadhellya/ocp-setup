@@ -1,0 +1,9 @@
+zone "basedomain." {
+    type master;
+    file "/etc/named/zones/db.record";
+};
+
+zone "1.168.192.in-addr.arpa" {
+    type master;
+    file "/etc/named/zones/db.ptr";
+};
