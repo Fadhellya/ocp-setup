@@ -1,5 +1,5 @@
 $TTL    604800
-@       IN      SOA     helper.basedomain. admin.basedomain. (
+@       IN      SOA     helper.virtus-lab.net. admin.virtus-lab.net. (
                   1     ; Serial
              604800     ; Refresh
               86400     ; Retry
@@ -11,26 +11,26 @@ $TTL    604800
     IN      NS      helper
 
 ; name servers - A records
-helper.basedomain.          IN      A       192.168.1.122 
+helper.virtus-lab.net.          IN      A       10.100.12.9 
 
-; OpenShift Container Platform Cluster - A records
-bootstrap.cluster.basedomain.          IN      A       192.168.1.122  
-bastion.cluster.basedomain.              IN      A       192.168.1.122 
-master-1.cluster.basedomain.           IN      A       192.168.1.122  
-master-2.cluster.basedomain.           IN      A       192.168.1.122  
-master-3.cluster.basedomain.           IN      A       192.168.1.122  
-worker-1.cluster.basedomain.           IN      A       192.168.1.122  
-worker-2.cluster.basedomain.           IN      A       192.168.1.122  
-worker-3.cluster.basedomain.           IN      A       192.168.1.122  
-worker-4.cluster.basedomain.           IN      A       192.168.1.122  
-infra-1.cluster.basedomain.            IN      A       192.168.1.122  
-infra-2.cluster.basedomain.            IN      A       192.168.1.122  
-infra-3.cluster.basedomain.            IN      A       192.168.1.122  
-router-1.cluster.basedomain.           IN      A       192.168.1.122  
-router-2.cluster.basedomain.           IN      A       192.168.1.122  
-router-3.cluster.basedomain.           IN      A       192.168.1.122  
+; OpenShift Container Platform cluster - A records
+bootstrap.ocp4.virtus-lab.net.          IN      A       10.100.12.16  
+bastion.ocp4.virtus-lab.net.              IN      A       10.100.12.9 
+master-1.ocp4.virtus-lab.net.           IN      A       10.100.12.10  
+master-2.ocp4.virtus-lab.net.           IN      A       10.100.12.11  
+master-3.ocp4.virtus-lab.net.           IN      A       10.100.12.12  
+#worker-1.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
+#worker-2.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
+#worker-3.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
+#worker-4.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
+infra-1.ocp4.virtus-lab.net.            IN      A       10.100.12.13  
+infra-2.ocp4.virtus-lab.net.            IN      A       10.100.12.14  
+infra-3.ocp4.virtus-lab.net.            IN      A       10.100.12.15  
+#router-1.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
+#router-2.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
+#router-3.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
 
-; OpenShift internal cluster IPs - A records
-api.cluster.basedomain.              IN      A       192.168.1.122  
-api-int.cluster.basedomain.          IN      A       192.168.1.122  
-*.apps.cluster.basedomain.           IN      A       192.168.1.122  
+; OpenShift internal ocp4 IPs - A records
+api.ocp4.virtus-lab.net.              IN      A       10.100.12.9  
+api-int.ocp4.virtus-lab.net.          IN      A       10.100.12.9  
+*.apps.ocp4.virtus-lab.net.           IN      A       10.100.12.9  
