@@ -19,16 +19,16 @@ bastion.ocp4.virtus-lab.net.              IN      A       10.100.12.9
 master-1.ocp4.virtus-lab.net.           IN      A       10.100.12.10  
 master-2.ocp4.virtus-lab.net.           IN      A       10.100.12.11  
 master-3.ocp4.virtus-lab.net.           IN      A       10.100.12.12  
-#worker-1.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
-#worker-2.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
-#worker-3.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
-#worker-4.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
+;worker-1.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
+;worker-2.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
+;worker-3.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
+;worker-4.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
 infra-1.ocp4.virtus-lab.net.            IN      A       10.100.12.13  
 infra-2.ocp4.virtus-lab.net.            IN      A       10.100.12.14  
 infra-3.ocp4.virtus-lab.net.            IN      A       10.100.12.15  
-#router-1.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
-#router-2.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
-#router-3.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
+;router-1.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
+;router-2.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
+;router-3.ocp4.virtus-lab.net.           IN      A       10.100.12.122  
 
 ; OpenShift internal ocp4 IPs - A records
 api.ocp4.virtus-lab.net.              IN      A       10.100.12.9  

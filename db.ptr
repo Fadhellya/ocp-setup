@@ -19,15 +19,15 @@ $TTL    604800
 10    IN    PTR    master-1.ocp4.virtus-lab.net. 
 11    IN    PTR    master-2.ocp4.virtus-lab.net. 
 12    IN    PTR    master-3.ocp4.virtus-lab.net. 
-#204    IN    PTR    worker-1.ocp4.virtus-lab.net. 
-#205    IN    PTR    worker-2.ocp4.virtus-lab.net. 
-#205    IN    PTR    worker-3.ocp4.virtus-lab.net. 
-#205    IN    PTR    worker-4.ocp4.virtus-lab.net. 
+; 204    IN    PTR    worker-1.ocp4.virtus-lab.net. 
+; 205    IN    PTR    worker-2.ocp4.virtus-lab.net. 
+; 205    IN    PTR    worker-3.ocp4.virtus-lab.net. 
+; 205    IN    PTR    worker-4.ocp4.virtus-lab.net. 
 13    IN    PTR    infra-1.ocp4.virtus-lab.net. 
 14    IN    PTR    infra-2.ocp4.virtus-lab.net. 
 15    IN    PTR    infra-3.ocp4.virtus-lab.net. 
-#204    IN    PTR    router-1.ocp4.virtus-lab.net. 
-#205    IN    PTR    router-2.ocp4.virtus-lab.net. 
-#205    IN    PTR    router-3.ocp4.virtus-lab.net. 
+; 204    IN    PTR    router-1.ocp4.virtus-lab.net. 
+; 205    IN    PTR    router-2.ocp4.virtus-lab.net. 
+; 205    IN    PTR    router-3.ocp4.virtus-lab.net. 
 9    IN    PTR    api.ocp4.virtus-lab.net. 
 9    IN    PTR    api-int.ocp4.virtus-lab.net.

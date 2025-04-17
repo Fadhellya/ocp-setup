@@ -2,7 +2,7 @@ zone "virtus-lab.net." {
     type master;
     file "/etc/named/zones/db.record";
 };
-// kebalikkan dari network ip
+
 zone "12.100.10.in-addr.arpa" {
     type master;
     file "/etc/named/zones/db.ptr";
