@@ -1,8 +1,7 @@
-zone "virtus-lab.net." {
+zone "virtus-dev.net." {
     type master;
     file "/etc/named/zones/db.record";
 };
-
 zone "12.100.10.in-addr.arpa" {
     type master;
     file "/etc/named/zones/db.ptr";
