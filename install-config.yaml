@@ -6,7 +6,7 @@ metadata:
 compute:
 - hyperthreading: Enabled
   name: worker
-  replicas: 0
+  replicas: 2
 
 controlPlane:
   hyperthreading: Enabled
@@ -14,11 +14,11 @@ controlPlane:
   replicas: 3
 
 networking:
+  networkType: OVNKubernetes
   clusterNetwork:
-  - cidr: 10.128.0.0/14 
-    hostPrefix: 23 
-  networkType: OpenShiftSDN
-  serviceNetwork: 
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+  serviceNetwork:
   - 172.30.0.0/16
 
 platform:
@@ -26,5 +26,20 @@ platform:
 
 fips: false
 
-pullSecret: '{"auths":{"fake":{"auth": "bar"}}}' 
-sshKey: 'ssh-ed25519 AAAA...'   
+proxy:
+  httpProxy: http://devops:P%40ssw0rd%21@proxy.virtus.net:3128
+  httpsProxy: http://devops:P%40ssw0rd%21@proxy.virtus.net:3128
+  noProxy: >-
+    .svc,
+    .cluster.local,
+    127.0.0.1,
+    localhost,
+    10.128.0.0/14,
+    172.30.0.0/16,
+    192.168.122.0/24,
+    api.lab.okd.local,
+    api-int.lab.okd.local,
+    image-registry.openshift-image-registry.svc:5000
+
+pullSecret: '{"auths":{"fake":{"auth": "bar"}}}'
+sshKey: 'ssh-ed25519 AAAA...'
