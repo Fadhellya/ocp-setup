@@ -1,7 +1,7 @@
 apiVersion: v1
-baseDomain: okd.local
+baseDomain: virtus-dev.net
 metadata:
-  name: lab
+  name: ocp4
 
 compute:
 - hyperthreading: Enabled
@@ -17,7 +17,7 @@ networking:
   clusterNetwork:
   - cidr: 10.128.0.0/14 
     hostPrefix: 23 
-  networkType: OpenShiftSDN
+  networkType: OVNKubernetes
   serviceNetwork: 
   - 172.30.0.0/16
 
