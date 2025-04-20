@@ -13,4 +13,138 @@ akses internet
 package req:
 yum install -y bind bind-utils nfs-utils git haproxy httpd chrony
 clone resource install : 
-git clone 
+git clone https://github.com/Fadhellya/ocp-setup.git
+matikan firewall
+systemctl disable firewalld --now
+matikan selinux
+sed -i 's/^SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+reboot
+
+dns config
+cp named.conf /etc/named.conf
+cp named.conf.local /etc/named
+mkdir -p /etc/named/zones
+cp db* /etc/named/zones/
+
+/etc/named.conf config adjust
+/etc/named/named.conf.local config adjust
+/etc/named/zones/db.ptr config adjust
+/etc/named/zones/db.record config adjust
+
+aktifkan dns
+systemctl enable named --now
+
+haproxy config
+cp haproxy.cfg /etc/haproxy/haproxy.cfg
+/etc/haproxy/haproxy.cfg config adjust
+
+aktifkan haproxy
+systemctl enable haproxy --now
+
+ping google.com
+
+chrony config
+vi /etc/chrony.conf adjust config (allow 0.0.0.0/0)
+
+aktifkan chrony
+systemctl enable chronyd --now
+
+disk config for registry
+lsblk (output disk kosong /dev/sda)
+mkdir /storage
+pvcreate /dev/sda (disk kosong)
+vgcreate storage /dev/sda
+lvcreate -n nfs -L 299G storage
+mkfs.xfs /dev/mapper/storage-nfs
+/etc/fstab adjust config (/dev/mapper/storage-nfs  storage  xfs  defaults  0 0)
+mount -a
+
+nfs config for registry
+mkdir -p /storage/registry
+/etc/exports adjust config ( /storage *(rw,root_squash) )
+systemctl enable nfs-server --now
+exportsfs -v
+
+private key config untuk inject di installer
+ssh-keygen
+
+oc execute install
+mkdir installer
+cd installer
+wget mirror openshift installer dan client dari link (https://mirror.openshift.com/pub/openshift-v4/clients/ocp/) adjust version
+tar xvf openshift-client dan openshift-installer
+echo $PATH
+mv oc kubectl openshift-install /usr/local/bin
+
+konfigurasi install-config
+mkdir /ocp
+cp install-config.yaml /ocp
+cd /ocp
+/ocp/install-config.yaml adjust config
+
+install openshift
+openshift-install create manifests --dir=/ocp
+/ocp/manifests/cluster-scheduler adjust config (masterSchedule = false jika tidak ingin pod apps di running di masternode)
+openshift-install create ignition-configs --dir=/ocp
+cp *.ign /var/www/html
+chmod 777 /var/www/html/*.ign
+
+httpd config
+sed -i 's/Listen 80/Listen 88/g' /etc/httpd/conf/httpd.conf
+systemctl enable httpd --now
+
+disetiap vm node terutama odf tambahkan parameter (diskEnableUUID = TRUE)
+
+bootstrap vm config
+ip
+gateway
+nameserver : helper/bastion ip
+searchdomain: <cluster-name>.<basedomain>
+bash
+ping google.com
+sudo coreos-installer install /dev/sda --copy-network --insecure-ignition --ignition-url http://<ipbastion/helper>:88/bootstrap.ign
+reboot
+
+check haproxy (ip bastion/helper:9000)
+
+masternode untuk tiga2nya
+ip
+gateway
+nameserver : helper/bastion ip
+searchdomain: <cluster-name>.<basedomain>
+bash
+ping google.com
+sudo coreos-installer install /dev/sda --copy-network --insecure-ignition --ignition-url http://<ipbastion/helper>:88/master.ign
+ulangi
+reboot serentak master
+
+tunggu up 3 master check di haproxy
+
+login ocp
+export KUBECONFIG=/ocp/auth/kubeconfig
+oc get node
+oc get co
+oc get csr
+
+workernode
+ip
+gateway
+nameserver : helper/bastion ip
+searchdomain: <cluster-name>.<basedomain>
+bash
+ping google.com
+sudo coreos-installer install /dev/sda --copy-network --insecure-ignition --ignition-url http://<ipbastion/helper>:88/worker.ign
+reboot
+oc get csr | grep -i pending
+oc get csr for approve
+oc get node
+
+oc whoami --show-console
+
+login kubeadm
+pw = cat /ocp/auth/kubeadmin-password
+
+
+
+
+
