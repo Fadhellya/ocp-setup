@@ -44,10 +44,12 @@ systemctl enable haproxy --now
 ping google.com
 
 chrony config
-vi /etc/chrony.conf adjust config (allow 0.0.0.0/0)
+vi /etc/chrony.conf adjust config (allow 0.0.0.0/0 dan <serverindo> iburst)
 
 aktifkan chrony
 systemctl enable chronyd --now
+timedatectl
+chrony source
 
 disk config for registry
 lsblk (output disk kosong /dev/sda)
@@ -135,16 +137,67 @@ bash
 ping google.com
 sudo coreos-installer install /dev/sda --copy-network --insecure-ignition --ignition-url http://<ipbastion/helper>:88/worker.ign
 reboot
+
+
+di bastion
 oc get csr | grep -i pending
 oc get csr for approve
 oc get node
-
 oc whoami --show-console
-
 login kubeadm
 pw = cat /ocp/auth/kubeadmin-password
+yum install htpasswd -y
+touch users.htpasswd
+htpasswd -c -B -b users.htpasswd admin P@ssw0rd
+oc create secret generic <nama_secret> --from-file=htpasswd=<path_to_users.htpasswd> -n openshift-config
 
 
+butane installation
+curl https://mirror.openshift.com/pub/openshift-v4/clients/butane/latest/butane --output butane
+chmod +x butane
+cp butane /usr/local/bin
+
+
+create butane file : 
+vi 99-worker-ntp.bu
+script : 
+
+variant: openshift
+version: 4.17.0 <adjust version>
+metadata:
+  name: 99-worker-ntp
+  labels:
+    machineconfiguration.openshift.io/role: worker
+openshift:
+  kernel_arguments:
+    - loglevel=7
+storage:
+  files:
+    - path: /etc/chrony.conf
+      mode: 0644
+      overwrite: true
+      contents:
+        inline: |
+          <sesuai ntp server indo> iburst (bsa 3)
+          driftfile /var/lib/chrony/drift
+          makestep 1.0 3
+          rtcsync
+          logdir /var/log/chrony
+
+untuk master cukup di copy saja file worker
+cp 99-worker-ntp.bu 99-master-ntp.bu 
+edit file master dan cukup ganti role saja menjadi master
+
+butane 99-worker-ntp.bu -o ./99-worker-ntp.yaml
+butane 99-master-ntp.bu -o ./99-master-ntp.yaml
+
+oc apply -f 99-worker-ntp.yaml
+oc apply -f 99-master-ntp.yaml
+
+oc get nodes
+
+config chrony di bastion/helper
+chronyc sources
 
 
 
