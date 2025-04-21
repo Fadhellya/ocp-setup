@@ -1,8 +1,8 @@
-zone "virtus-dev.net." {
+zone "mylab.local." {
     type master;
     file "/etc/named/zones/db.record";
 };
-zone "12.100.10.in-addr.arpa" {
+zone "160.23.10.in-addr.arpa" {
     type master;
     file "/etc/named/zones/db.ptr";
 };
