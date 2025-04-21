@@ -15,7 +15,7 @@ $TTL    604800
 
 ; OpenShift Container Platform cluster - PTR records
 235    IN    PTR    bootstrap.cls-dev-01.mylab.local. 
-;234    IN    PTR    bastion.cls-dev-01.mylab.local. 
+234    IN    PTR    bastion.cls-dev-01.mylab.local. 
 231    IN    PTR    master-1.cls-dev-01.mylab.local. 
 232    IN    PTR    master-2.cls-dev-01.mylab.local. 
 233    IN    PTR    master-3.cls-dev-01.mylab.local. 
