@@ -1,5 +1,5 @@
 $TTL    604800
-@       IN      SOA     helper.virtus-dev.net. admin.virtus-dev.net. (
+@       IN      SOA     bastion.mylab.local. admin.mylab.local. (
                   1     ; Serial
              604800     ; Refresh
               86400     ; Retry
@@ -8,29 +8,29 @@ $TTL    604800
 )
 
 ; name servers - NS records
-    IN      NS      helper
+    IN      NS      bastion
 
 ; name servers - A records
-helper.virtus-dev.net.          IN      A       10.100.12.9 
+bastion.mylab.local.          IN      A       10.23.160.234 
 
 ; OpenShift Container Platform cluster - A records
-bootstrap.ocp4.virtus-dev.net.          IN      A       10.100.12.16  
-bastion.ocp4.virtus-dev.net.              IN      A       10.100.12.9 
-master-1.ocp4.virtus-dev.net.           IN      A       10.100.12.10  
-master-2.ocp4.virtus-dev.net.           IN      A       10.100.12.11  
-master-3.ocp4.virtus-dev.net.           IN      A       10.100.12.12  
-;worker-1.ocp4.virtus-dev.net.           IN      A       10.100.12.122  
-;worker-2.ocp4.virtus-dev.net.           IN      A       10.100.12.122  
-;worker-3.ocp4.virtus-dev.net.           IN      A       10.100.12.122  
-;worker-4.ocp4.virtus-dev.net.           IN      A       10.100.12.122  
-infra-1.ocp4.virtus-dev.net.            IN      A       10.100.12.13  
-infra-2.ocp4.virtus-dev.net.            IN      A       10.100.12.14  
-infra-3.ocp4.virtus-dev.net.            IN      A       10.100.12.15  
-;router-1.ocp4.virtus-dev.net.           IN      A       10.100.12.122  
-;router-2.ocp4.virtus-dev.net.           IN      A       10.100.12.122  
-;router-3.ocp4.virtus-dev.net.           IN      A       10.100.12.122  
+bootstrap.cls-dev-01.mylab.local.          IN      A       10.23.160.235  
+bastion.cls-dev-01.mylab.local.              IN      A       10.23.160.234 
+master-1.cls-dev-01.mylab.local.           IN      A       10.23.160.231
+master-2.cls-dev-01.mylab.local.           IN      A       10.23.160.232 
+master-3.cls-dev-01.mylab.local.           IN      A       10.23.160.233 
+;worker-1.cls-dev-01.mylab.local.           IN      A       10.23.160.122  
+;worker-2.cls-dev-01.mylab.local.           IN      A       10.23.160.122  
+;worker-3.cls-dev-01.mylab.local.           IN      A       10.23.160.122  
+;worker-4.cls-dev-01.mylab.local.           IN      A       10.23.160.122  
+;infra-1.cls-dev-01.mylab.local.            IN      A       10.23.160.13  
+;infra-2.cls-dev-01.mylab.local.            IN      A       10.23.160.14  
+;infra-3.cls-dev-01.mylab.local.            IN      A       10.23.160.15  
+;router-1.cls-dev-01.mylab.local.           IN      A       10.23.160.122  
+;router-2.cls-dev-01.mylab.local.           IN      A       10.23.160.122  
+;router-3.cls-dev-01.mylab.local.           IN      A       10.23.160.122  
 
-; OpenShift internal ocp4 IPs - A records
-api.ocp4.virtus-dev.net.              IN      A       10.100.12.9  
-api-int.ocp4.virtus-dev.net.          IN      A       10.100.12.9  
-*.apps.ocp4.virtus-dev.net.           IN      A       10.100.12.9 
+; OpenShift internal cls-dev-01 IPs - A records
+api.cls-dev-01.mylab.local.              IN      A       10.23.160.234  
+api-int.cls-dev-01.mylab.local.          IN      A       10.23.160.234  
+*.apps.cls-dev-01.mylab.local.           IN      A       10.23.160.234 
