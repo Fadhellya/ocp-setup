@@ -1,5 +1,5 @@
 $TTL    604800
-@       IN      SOA     helper.mylab.local. admin.mylab.local. (
+@       IN      SOA     bastion.mylab.local. admin.mylab.local. (
                   1     ; Serial
              604800     ; Refresh
               86400     ; Retry
@@ -8,10 +8,10 @@ $TTL    604800
 )
 
 ; name servers - NS records
-    IN      NS      helper
+    IN      NS      bastion
 
 ; name servers - A records
-helper.mylab.local.          IN      A       10.23.160.234 
+bastion.mylab.local.          IN      A       10.23.160.234 
 
 ; OpenShift Container Platform cluster - A records
 bootstrap.cls-dev-01.mylab.local.          IN      A       10.23.160.235  
