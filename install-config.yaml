@@ -30,6 +30,8 @@ proxy:
   httpProxy: http://172.17.170.68:443
   httpsProxy: http://172.17.170.68:443
   noProxy: >-
+    .cimbniaga.co.id,
+    .mylab.local
     .svc,
     .cluster.local,
     127.0.0.1,
