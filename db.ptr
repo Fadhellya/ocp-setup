@@ -29,5 +29,5 @@ $TTL    604800
 ;204    IN    PTR    router-1.cls-dev-01.mylab.local. 
 ;205    IN    PTR    router-2.cls-dev-01.mylab.local. 
 ;205    IN    PTR    router-3.cls-dev-01.mylab.local. 
-234    IN    PTR    api.cls-dev-01.mylab.local. 
-234    IN    PTR    api-int.cls-dev-01.mylab.local.
+99    IN    PTR    api.cls-dev-01.mylab.local. 
+99    IN    PTR    api-int.cls-dev-01.mylab.local.
