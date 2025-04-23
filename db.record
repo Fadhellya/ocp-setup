@@ -31,6 +31,6 @@ master-3.cls-dev-01.mylab.local.           IN      A       10.23.160.233
 ;router-3.cls-dev-01.mylab.local.           IN      A       10.23.160.122  
 
 ; OpenShift internal cls-dev-01 IPs - A records
-api.cls-dev-01.mylab.local.              IN      A       10.23.160.234  
-api-int.cls-dev-01.mylab.local.          IN      A       10.23.160.234  
-*.apps.cls-dev-01.mylab.local.           IN      A       10.23.160.234 
+api.cls-dev-01.mylab.local.              IN      A       10.23.160.99  
+api-int.cls-dev-01.mylab.local.          IN      A       10.23.160.99  
+*.apps.cls-dev-01.mylab.local.           IN      A       10.23.160.100 
