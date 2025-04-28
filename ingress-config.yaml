@@ -1,0 +1,9 @@
+di cluster setting >> configuration >> ingress-controller diatas replicas dan diubah menjadi 3
+  nodePlacement:
+    nodeSelector:
+      matchLabels:
+        node-role.kubernetes.io/infra: ''
+    tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+        operator: Exists
