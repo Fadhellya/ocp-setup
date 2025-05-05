@@ -10,7 +10,7 @@ spec:
               - hostname-node-odf
   storageClassDevices:
     - devicePaths:
-        - /dev/disk/by-id/scsi-SVMware_Virtual_disk_6000c293fa33c06bd04fbc42631e4e03
+        - /dev/disk/by-id/scsi-SVMware_Virtual_disk_6000c293fa33c06bd04fbc42631e4e03  <ls -all /dev/disk/by-id/ at infra-node>
         - /dev/disk/by-id/scsi-SVMware_Virtual_disk_6000c2963d8beab1bfc479d822fd5976
         - /dev/disk/by-id/scsi-SVMware_Virtual_disk_6000c297c0a7d6a9b92b251e656357a8
       storageClassName: sc-odf
