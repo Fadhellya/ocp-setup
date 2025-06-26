@@ -6,7 +6,7 @@
 - **RHCOS for Master/Worker/Bootstrap**:
   [Download from Official RHCOS Repository](https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/)
 - **Client For Manage OC**:
-  [Download from Official Repository](https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.19.0/)
+  [Download from Official Repository](https://mirror.openshift.com/pub/openshift-v4/clients/ocp)
 
 ---
 
