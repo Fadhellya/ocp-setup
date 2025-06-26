@@ -5,6 +5,8 @@
   [RHEL 9.5 ISO](https://access.cdn.redhat.com/content/origin/files/sha256/0b/0bb7600c3187e89cebecfcfc73947eb48b539252ece8aab3fe04d010e8644ea9/rhel-9.5-x86_64-dvd.iso)
 - **RHCOS for Master/Worker/Bootstrap**:
   [Download from Official RHCOS Repository](https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/)
+- **Client For Manage OC**:
+  [Download from Official Repository](https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.19.0/)
 
 ---
 
