@@ -10,6 +10,16 @@
 
 ---
 
+wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.19.0/openshift-client-linux.tar.gz
+wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.19.0/openshift-install-linux.tar.gz
+
+tar xvf openshift-client-linux.tar.gz
+tar xvf openshift-install-linux.tar.gz
+
+matikan firewall dan selinux dan reboot (bastion)
+
+
+
 ## 🛠️ Bastion/Helper Configuration
 
 ### 🔧 Hardware
