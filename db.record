@@ -1,5 +1,5 @@
 $TTL    604800
-@       IN      SOA     helper.basedomain. admin.basedomain. (
+@       IN      SOA     helper.<base-domain>. admin.<base-domain>. (
                   1     ; Serial
              604800     ; Refresh
               86400     ; Retry
@@ -11,26 +11,22 @@ $TTL    604800
     IN      NS      helper
 
 ; name servers - A records
-helper.basedomain.          IN      A       192.168.1.122 
+helper.<base-domain>.          IN      A       <normal-ip>
 
-; OpenShift Container Platform Cluster - A records
-bootstrap.cluster.basedomain.          IN      A       192.168.1.122  
-bastion.cluster.basedomain.              IN      A       192.168.1.122 
-master-1.cluster.basedomain.           IN      A       192.168.1.122  
-master-2.cluster.basedomain.           IN      A       192.168.1.122  
-master-3.cluster.basedomain.           IN      A       192.168.1.122  
-worker-1.cluster.basedomain.           IN      A       192.168.1.122  
-worker-2.cluster.basedomain.           IN      A       192.168.1.122  
-worker-3.cluster.basedomain.           IN      A       192.168.1.122  
-worker-4.cluster.basedomain.           IN      A       192.168.1.122  
-infra-1.cluster.basedomain.            IN      A       192.168.1.122  
-infra-2.cluster.basedomain.            IN      A       192.168.1.122  
-infra-3.cluster.basedomain.            IN      A       192.168.1.122  
-router-1.cluster.basedomain.           IN      A       192.168.1.122  
-router-2.cluster.basedomain.           IN      A       192.168.1.122  
-router-3.cluster.basedomain.           IN      A       192.168.1.122  
+; OpenShift Container Platform cluster - A records
+bootstrap.<cluster-name>.<base-domain>.          IN      A       <normal-ip>
+bastion.<cluster-name>.<base-domain>.              IN      A       <normal-ip>
+<master-name>.<cluster-name>.<base-domain>.           IN      A       <normal-ip>
+<master-name>.<cluster-name>.<base-domain>.           IN      A       <normal-ip>
+<master-name>.<cluster-name>.<base-domain>.           IN      A       <normal-ip>
+<worker-name>.<cluster-name>.<base-domain>.           IN      A       <normal-ip>
+<worker-name>.<cluster-name>.<base-domain>.           IN      A       <normal-ip>
+<worker-name>.<cluster-name>.<base-domain>.           IN      A       <normal-ip>
+<infra-name>.<cluster-name>.<base-domain>.            IN      A       <normal-ip>
+<infra-name>.<cluster-name>.<base-domain>.            IN      A       <normal-ip>
+<infra-name>.<cluster-name>.<base-domain>.            IN      A       <normal-ip>
 
-; OpenShift internal cluster IPs - A records
-api.cluster.basedomain.              IN      A       192.168.1.122  
-api-int.cluster.basedomain.          IN      A       192.168.1.122  
-*.apps.cluster.basedomain.           IN      A       192.168.1.122  
+; OpenShift internal node IPs - A records
+api.<cluster-name>.<base-domain>.              IN      A       <ip-helper>
+api-int.<cluster-name>.<base-domain>.          IN      A       <ip-helper>
+*.apps.<cluster-name>.<base-domain>.           IN      A       <ip-helper>
