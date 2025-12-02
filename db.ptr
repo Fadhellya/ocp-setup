@@ -1,5 +1,5 @@
 $TTL    604800
-@       IN      SOA     helper.<basedomain>. admin.<basedomain>. (
+@       IN      SOA     helper.vti.mantap. admin.vti.mantap. (
                   6     ; Serial
              604800     ; Refresh
               86400     ; Retry
@@ -8,22 +8,22 @@ $TTL    604800
 )
 
 ; name servers - NS records
-    IN      NS      helper.<base-domain>.
+    IN      NS      helper.vti.mantap.
 
 ; name servers - PTR records
-<angka-ip-blakang-helper>    IN    PTR    helper.<base-domain>.
+80    IN    PTR    helper.vti.mantap.
 
 ; OpenShift Container Platform cluster - PTR records
-<angka-ip-blakang>    IN    PTR    bootstrap.<cluster-name>.<base-domain>. 
-<>    IN    PTR    bastion.<cluster-name>.<base-domain>. 
-<>    IN    PTR    <master-name>.<cluster-name>.<base-domain>. 
-<>    IN    PTR    <master-name>.<cluster-name>.<base-domain>. 
-<>    IN    PTR    <master-name>.<cluster-name>.<base-domain>. 
-<>    IN    PTR    <worker-name>.<cluster-name>.<base-domain>. 
-<>    IN    PTR    <worker-name>.<cluster-name>.<base-domain>. 
-<>    IN    PTR    <worker-name>.<cluster-name>.<base-domain>. 
-<>    IN    PTR    <infra-name>.<cluster-name>.<base-domain>. 
-<>    IN    PTR    <infra-name>.<cluster-name>.<base-domain>. 
-<>    IN    PTR    <infra-name>.<cluster-name>.<base-domain>. 
-<ip-blakang-helper/lb>    IN    PTR    api.<cluster-name>.<base-domain>. 
-<>    IN    PTR    api-int.<cluster-name>.<base-domain>.
+81    IN    PTR    bootstrap.ocp.vti.mantap. 
+79    IN    PTR    bastion.ocp.vti.mantap. 
+82    IN    PTR    master-1.ocp.vti.mantap. 
+83    IN    PTR    master-2.ocp.vti.mantap. 
+84    IN    PTR    master-3.ocp.vti.mantap. 
+85    IN    PTR    worker-1.ocp.vti.mantap. 
+86    IN    PTR    worker-2.ocp.vti.mantap. 
+87    IN    PTR    worker-3.ocp.vti.mantap. 
+88    IN    PTR    infra-1.ocp.vti.mantap. 
+89    IN    PTR    infra-2.ocp.vti.mantap. 
+90    IN    PTR    infra-3.ocp.vti.mantap. 
+80    IN    PTR    api.ocp.vti.mantap. 
+80    IN    PTR    api-int.ocp.vti.mantap.
