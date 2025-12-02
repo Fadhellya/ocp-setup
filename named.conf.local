@@ -1,9 +1,9 @@
-zone "basedomain." {
+zone "<base-domain>." { #example virtus.corp
     type master;
-    file "/etc/named/zones/db.record";
+    file "/etc/named/zones/db.record"; #sesuaikan dengan letak db.record
 };
 
-zone "1.168.192.in-addr.arpa" {
+zone "<ip-range-master-tapi-terbalik>.in-addr.arpa" { #example 3 angka pertama ip-terbalik : 1.168.192 jika ip yang diinginkan 192.168.1.<..>
     type master;
-    file "/etc/named/zones/db.ptr";
+    file "/etc/named/zones/db.ptr"; #sesuaikan dengan path db.ptr
 };
