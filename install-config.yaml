@@ -1,12 +1,12 @@
 apiVersion: v1
-baseDomain: okd.local
+baseDomain: <base-domain> #example : virtus.corp
 metadata:
-  name: lab
+  name: <cluster-name> #example : ocp4
 
 compute:
 - hyperthreading: Enabled
   name: worker
-  replicas: 2
+  replicas: 0
 
 controlPlane:
   hyperthreading: Enabled
@@ -14,11 +14,11 @@ controlPlane:
   replicas: 3
 
 networking:
-  networkType: OVNKubernetes
   clusterNetwork:
-  - cidr: 10.128.0.0/14
-    hostPrefix: 23
-  serviceNetwork:
+  - cidr: 10.128.0.0/14 
+    hostPrefix: 23 
+  networkType: OVNKubernetes
+  serviceNetwork: 
   - 172.30.0.0/16
 
 platform:
@@ -26,20 +26,20 @@ platform:
 
 fips: false
 
-proxy:
-  httpProxy: http://devops:P%40ssw0rd%21@proxy.virtus.net:3128
-  httpsProxy: http://devops:P%40ssw0rd%21@proxy.virtus.net:3128
-  noProxy: >-
-    .svc,
-    .cluster.local,
-    127.0.0.1,
-    localhost,
-    10.128.0.0/14,
-    172.30.0.0/16,
-    192.168.122.0/24,
-    api.lab.okd.local,
-    api-int.lab.okd.local,
-    image-registry.openshift-image-registry.svc:5000
+#proxy:
+#  httpProxy: http://172.17.170.68:443
+#  httpsProxy: http://172.17.170.68:443
+#  noProxy: >-
+#    .svc,
+#    .cluster.local,
+#    127.0.0.1,
+#    localhost,
+#    10.128.0.0/14,
+#    172.30.0.0/16,
+#    192.168.122.0/24,
+#    api.cls-dev-01.mylab.local,
+#    api-int.cls-dev-01.mylab.local,
+#    image-registry.openshift-image-registry.svc:5000
 
-pullSecret: '{"auths":{"fake":{"auth": "bar"}}}'
-sshKey: 'ssh-ed25519 AAAA...'
+pullSecret: '<pull-secret>'
+sshKey: '<output cat id.pub>'   
