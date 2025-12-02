@@ -1,5 +1,5 @@
 $TTL    604800
-@       IN      SOA     helper.<base-domain>. admin.<base-domain>. (
+@       IN      SOA     helper.vti.mantap. admin.vti.mantap. (
                   1     ; Serial
              604800     ; Refresh
               86400     ; Retry
@@ -11,22 +11,22 @@ $TTL    604800
     IN      NS      helper
 
 ; name servers - A records
-helper.<base-domain>.          IN      A       <normal-ip>
+helper.vti.mantap.          IN      A       10.100.24.80
 
 ; OpenShift Container Platform cluster - A records
-bootstrap.<cluster-name>.<base-domain>.          IN      A       <normal-ip>
-bastion.<cluster-name>.<base-domain>.              IN      A       <normal-ip>
-<master-name>.<cluster-name>.<base-domain>.           IN      A       <normal-ip>
-<master-name>.<cluster-name>.<base-domain>.           IN      A       <normal-ip>
-<master-name>.<cluster-name>.<base-domain>.           IN      A       <normal-ip>
-<worker-name>.<cluster-name>.<base-domain>.           IN      A       <normal-ip>
-<worker-name>.<cluster-name>.<base-domain>.           IN      A       <normal-ip>
-<worker-name>.<cluster-name>.<base-domain>.           IN      A       <normal-ip>
-<infra-name>.<cluster-name>.<base-domain>.            IN      A       <normal-ip>
-<infra-name>.<cluster-name>.<base-domain>.            IN      A       <normal-ip>
-<infra-name>.<cluster-name>.<base-domain>.            IN      A       <normal-ip>
+bootstrap.ocp.vti.mantap.          IN      A       10.100.24.81
+bastion.ocp.vti.mantap.              IN      A       10.100.24.79
+master-1.ocp.vti.mantap.           IN      A       10.100.24.82
+master-2.ocp.vti.mantap.           IN      A       10.100.24.83
+master-3.ocp.vti.mantap.           IN      A       10.100.24.84
+worker-1.ocp.vti.mantap.           IN      A       10.100.24.85
+worker-2.ocp.vti.mantap.           IN      A       10.100.24.86
+worker-3.ocp.vti.mantap.           IN      A       10.100.24.87
+infra-1.ocp.vti.mantap.            IN      A       10.100.24.88
+infra-2.ocp.vti.mantap.            IN      A       10.100.24.89
+infra-3.ocp.vti.mantap.            IN      A       10.100.24.90
 
 ; OpenShift internal node IPs - A records
-api.<cluster-name>.<base-domain>.              IN      A       <ip-helper>
-api-int.<cluster-name>.<base-domain>.          IN      A       <ip-helper>
-*.apps.<cluster-name>.<base-domain>.           IN      A       <ip-helper>
+api.ocp.vti.mantap.              IN      A       10.100.24.80
+api-int.ocp.vti.mantap.          IN      A       10.100.24.80
+*.apps.ocp.vti.mantap.           IN      A       10.100.24.80
