@@ -1,5 +1,5 @@
 $TTL    604800
-@       IN      SOA     helper.basedomain. admin.basedomain. (
+@       IN      SOA     helper.<basedomain>. admin.<basedomain>. (
                   6     ; Serial
              604800     ; Refresh
               86400     ; Retry
@@ -8,26 +8,22 @@ $TTL    604800
 )
 
 ; name servers - NS records
-    IN      NS      helper.basedomain.
+    IN      NS      helper.<base-domain>.
 
 ; name servers - PTR records
-210    IN    PTR    helper.basedomain.
+<angka-ip-blakang-helper>    IN    PTR    helper.<base-domain>.
 
-; OpenShift Container Platform Cluster - PTR records
-200    IN    PTR    bootstrap.cluster.basedomain. 
-200    IN    PTR    bastion.cluster.basedomain. 
-201    IN    PTR    master-1.cluster.basedomain. 
-202    IN    PTR    master-2.cluster.basedomain. 
-203    IN    PTR    master-3.cluster.basedomain. 
-204    IN    PTR    worker-1.cluster.basedomain. 
-205    IN    PTR    worker-2.cluster.basedomain. 
-205    IN    PTR    worker-3.cluster.basedomain. 
-205    IN    PTR    worker-4.cluster.basedomain. 
-204    IN    PTR    infra-1.cluster.basedomain. 
-205    IN    PTR    infra-2.cluster.basedomain. 
-205    IN    PTR    infra-3.cluster.basedomain. 
-204    IN    PTR    router-1.cluster.basedomain. 
-205    IN    PTR    router-2.cluster.basedomain. 
-205    IN    PTR    router-3.cluster.basedomain. 
-210    IN    PTR    api.cluster.basedomain. 
-210    IN    PTR    api-int.cluster.basedomain.
+; OpenShift Container Platform cluster - PTR records
+<angka-ip-blakang>    IN    PTR    bootstrap.<cluster-name>.<base-domain>. 
+<>    IN    PTR    bastion.<cluster-name>.<base-domain>. 
+<>    IN    PTR    <master-name>.<cluster-name>.<base-domain>. 
+<>    IN    PTR    <master-name>.<cluster-name>.<base-domain>. 
+<>    IN    PTR    <master-name>.<cluster-name>.<base-domain>. 
+<>    IN    PTR    <worker-name>.<cluster-name>.<base-domain>. 
+<>    IN    PTR    <worker-name>.<cluster-name>.<base-domain>. 
+<>    IN    PTR    <worker-name>.<cluster-name>.<base-domain>. 
+<>    IN    PTR    <infra-name>.<cluster-name>.<base-domain>. 
+<>    IN    PTR    <infra-name>.<cluster-name>.<base-domain>. 
+<>    IN    PTR    <infra-name>.<cluster-name>.<base-domain>. 
+<ip-blakang-helper/lb>    IN    PTR    api.<cluster-name>.<base-domain>. 
+<>    IN    PTR    api-int.<cluster-name>.<base-domain>.
