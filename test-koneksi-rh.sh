@@ -3,8 +3,8 @@
 # Proxy opsional (biarkan kosong jika tidak ada proxy)
 proxy=""
 
-# Output CSV
-output_file="ocp_proxy_preinstall_check.csv"
+# Output ke TXT
+output_file="ocp_proxy_preinstall_check.txt"
 
 # Daftar domain + port
 declare -a domains_ports=(
@@ -58,20 +58,11 @@ declare -a domains_ports=(
  "api.docker.com 443"
 )
 
-echo "Generating CSV header..."
-
-# CSV Header
-echo -n "CHECK_FROM_HOST" > "$output_file"
-for entry in "${domains_ports[@]}"; do
-    IFS=' ' read -r domain port <<< "$entry"
-    echo -n ",${domain}" >> "$output_file"
-done
-echo "" >> "$output_file"
-
 hostname_local=$(hostname)
-echo "Starting connectivity tests from host: $hostname_local"
+echo "CHECK_FROM_HOST: $hostname_local" > "$output_file"
+echo "---------------------------------------------------------------" >> "$output_file"
 
-row="$hostname_local"
+echo "Testing connectivity from host: $hostname_local"
 
 # Test semua domain
 for entry in "${domains_ports[@]}"; do
@@ -80,17 +71,17 @@ for entry in "${domains_ports[@]}"; do
     echo ""
     echo "  - Checking $domain:$port ..."
 
-    # Apply proxy (hanya jika diisi)
+    # Apply proxy (jika ada)
     if [[ -n "$proxy" ]]; then
         export http_proxy=$proxy https_proxy=$proxy
     else
         unset http_proxy https_proxy
     fi
 
-    # ======= CURL -v (VERBOSE) CHECK ========
+    # CURL verbose check
     curl_output=$(curl -v --connect-timeout 5 "https://$domain:$port" 2>&1)
 
-    # ======= Match result ========
+    # Result matching
     if echo "$curl_output" | grep -q "SSL connection using"; then
         result="Success"
     elif echo "$curl_output" | grep -qi "Forbidden\|403"; then
@@ -105,10 +96,10 @@ for entry in "${domains_ports[@]}"; do
         result="Failed"
     fi
 
-    row+=",$result"
-done
+    # Format TXT rapi (kolom domain kiri rata)
+    printf "%-60s %s\n" "$domain" "$result" >> "$output_file"
 
-echo "$row" >> "$output_file"
+done
 
 echo ""
 echo "====================================================="
