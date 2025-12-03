@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Proxy untuk curl (ubah sesuai environment)
+# Proxy untuk curl
 proxy="http://10.210.9.250:8080"
 
 # Output CSV
 output_file="ocp_proxy_preinstall_check.csv"
 
-# Whitelist Domain + Port (sesuai daftar final)
+# Whitelist Domain + Port
 declare -a domains_ports=(
  "registry.redhat.io 443"
  "access.redhat.com 443"
@@ -58,29 +58,22 @@ declare -a domains_ports=(
  "api.docker.com 443"
 )
 
-echo "Generating CSV header..."
+echo "DOMAIN,RESULT" > "$output_file"
 
-# CSV Header
-echo -n "CHECK_FROM_HOST" > "$output_file"
-for entry in "${domains_ports[@]}"; do
-    IFS=' ' read -r domain port <<< "$entry"
-    echo -n ",${domain}" >> "$output_file"
-done
-echo "" >> "$output_file"
+echo "Starting proxy whitelist connectivity test..."
+echo ""
 
-hostname_local=$(hostname)
-
-echo "Starting connectivity tests from host: $hostname_local"
-row="$hostname_local"
-
-# Test semua domain
+# Test each domain
 for entry in "${domains_ports[@]}"; do
     IFS=' ' read -r domain port <<< "$entry"
 
     echo "  - Checking $domain:$port ..."
 
+    # Hilangkan '*' dari wildcard dulu, curl tidak bisa handle langsung
+    test_domain=$(echo "$domain" | sed 's/*\.//')
+
     curl_output=$(export http_proxy=$proxy https_proxy=$proxy; \
-        curl -IL --connect-timeout 5 https://$domain 2>&1)
+        curl -IL --connect-timeout 5 https://$test_domain 2>&1)
 
     if echo "$curl_output" | grep -q "HTTP/1.1 200"; then
         result="Success"
@@ -94,13 +87,11 @@ for entry in "${domains_ports[@]}"; do
         result="Failed"
     fi
 
-    row+=",$result"
+    echo "$domain,$result" >> "$output_file"
 done
 
-echo "$row" >> "$output_file"
-
 echo ""
-echo "==================================================="
-echo " Proxy Pre-Install Whitelist Test Completed"
-echo " Output saved to: $output_file"
-echo "==================================================="
+echo "=============================================="
+echo "  Proxy Whitelist Test Completed"
+echo "  Output CSV: $output_file"
+echo "=============================================="
