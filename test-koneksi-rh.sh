@@ -6,7 +6,7 @@ proxy="http://10.210.9.250:8080"
 # Output CSV
 output_file="ocp_proxy_preinstall_check.csv"
 
-# Whitelist Domain + Port (sesuai daftar yang kamu beri)
+# Whitelist Domain + Port (sesuai daftar final)
 declare -a domains_ports=(
  "registry.redhat.io 443"
  "access.redhat.com 443"
@@ -60,52 +60,47 @@ declare -a domains_ports=(
 
 echo "Generating CSV header..."
 
-# Generate CSV Headers
-echo -n "NODE" > "$output_file"
+# CSV Header
+echo -n "CHECK_FROM_HOST" > "$output_file"
 for entry in "${domains_ports[@]}"; do
     IFS=' ' read -r domain port <<< "$entry"
     echo -n ",${domain}" >> "$output_file"
 done
 echo "" >> "$output_file"
 
-echo "Starting connectivity tests..."
+hostname_local=$(hostname)
 
-# Loop setiap node di cluster OpenShift
-for node in $(oc get nodes --no-headers | awk '{print $1}'); do
-    echo "Testing from node: $node"
-    row="$node"
+echo "Starting connectivity tests from host: $hostname_local"
+row="$hostname_local"
 
-    for entry in "${domains_ports[@]}"; do
-        IFS=' ' read -r domain port <<< "$entry"
+# Test semua domain
+for entry in "${domains_ports[@]}"; do
+    IFS=' ' read -r domain port <<< "$entry"
 
-        echo "  - Checking $domain:$port ..."
+    echo "  - Checking $domain:$port ..."
 
-        # Jalankan curl via SSH
-        curl_output=$(ssh core@"$node" \
-            "export http_proxy=$proxy; export https_proxy=$proxy; \
-             curl -IL --connect-timeout 5 https://$domain 2>&1")
+    curl_output=$(export http_proxy=$proxy https_proxy=$proxy; \
+        curl -IL --connect-timeout 5 https://$domain 2>&1)
 
-        # Klasifikasi hasil
-        if echo "$curl_output" | grep -q "HTTP/1.1 200"; then
-            result="Success"
-        elif echo "$curl_output" | grep -qi "Forbidden\|Access Denied"; then
-            result="Forbidden"
-        elif echo "$curl_output" | grep -qi "Could not resolve"; then
-            result="DNS_Fail"
-        elif echo "$curl_output" | grep -qi "Connection timed out"; then
-            result="Timeout"
-        else
-            result="Failed"
-        fi
+    if echo "$curl_output" | grep -q "HTTP/1.1 200"; then
+        result="Success"
+    elif echo "$curl_output" | grep -qi "Forbidden\|Access Denied"; then
+        result="Forbidden"
+    elif echo "$curl_output" | grep -qi "Could not resolve"; then
+        result="DNS_Fail"
+    elif echo "$curl_output" | grep -qi "Connection timed out"; then
+        result="Timeout"
+    else
+        result="Failed"
+    fi
 
-        row+=",$result"
-    done
-
-    echo "$row" >> "$output_file"
+    row+=",$result"
 done
+
+echo "$row" >> "$output_file"
 
 echo ""
 echo "==================================================="
-echo " Proxy Pre-Install Test Completed"
+echo " Proxy Pre-Install Whitelist Test Completed"
 echo " Output saved to: $output_file"
 echo "==================================================="
