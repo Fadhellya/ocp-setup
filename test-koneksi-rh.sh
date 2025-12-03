@@ -26,7 +26,7 @@ declare -a domains_ports=(
  "console.redhat.com 443"
  "mirror.openshift.com 443"
  "storage.googleapis.com/openshift-release 443"
- "*.apps.ove.corp.mandirisekuritas.co.id 443"
+ "*.apps.ocp-uat.qnbi.uat 443"
  "api.openshift.com 443"
  "rhcos.mirror.openshift.com 443"
  "quayio-production-s3.s3.amazonaws.com 443"
