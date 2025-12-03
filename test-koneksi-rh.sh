@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Proxy untuk curl
-proxy="http://10.210.9.250:8080"
+# Proxy opsional (biarkan kosong jika tidak ada proxy)
+proxy=""
 
 # Output CSV
 output_file="ocp_proxy_preinstall_check.csv"
 
-# Whitelist Domain + Port
+# Daftar domain + port
 declare -a domains_ports=(
  "registry.redhat.io 443"
  "access.redhat.com 443"
@@ -58,40 +58,60 @@ declare -a domains_ports=(
  "api.docker.com 443"
 )
 
-echo "DOMAIN,RESULT" > "$output_file"
+echo "Generating CSV header..."
 
-echo "Starting proxy whitelist connectivity test..."
-echo ""
+# CSV Header
+echo -n "CHECK_FROM_HOST" > "$output_file"
+for entry in "${domains_ports[@]}"; do
+    IFS=' ' read -r domain port <<< "$entry"
+    echo -n ",${domain}" >> "$output_file"
+done
+echo "" >> "$output_file"
 
-# Test each domain
+hostname_local=$(hostname)
+echo "Starting connectivity tests from host: $hostname_local"
+
+row="$hostname_local"
+
+# Test semua domain
 for entry in "${domains_ports[@]}"; do
     IFS=' ' read -r domain port <<< "$entry"
 
+    echo ""
     echo "  - Checking $domain:$port ..."
 
-    # Hilangkan '*' dari wildcard dulu, curl tidak bisa handle langsung
-    test_domain=$(echo "$domain" | sed 's/*\.//')
+    # Apply proxy (hanya jika diisi)
+    if [[ -n "$proxy" ]]; then
+        export http_proxy=$proxy https_proxy=$proxy
+    else
+        unset http_proxy https_proxy
+    fi
 
-    curl_output=$(export http_proxy=$proxy https_proxy=$proxy; \
-        curl -IL --connect-timeout 5 https://$test_domain 2>&1)
+    # ======= CURL -v (VERBOSE) CHECK ========
+    curl_output=$(curl -v --connect-timeout 5 "https://$domain:$port" 2>&1)
 
-    if echo "$curl_output" | grep -q "HTTP/1.1 200"; then
+    # ======= Match result ========
+    if echo "$curl_output" | grep -q "SSL connection using"; then
         result="Success"
-    elif echo "$curl_output" | grep -qi "Forbidden\|Access Denied"; then
+    elif echo "$curl_output" | grep -qi "Forbidden\|403"; then
         result="Forbidden"
-    elif echo "$curl_output" | grep -qi "Could not resolve"; then
+    elif echo "$curl_output" | grep -qi "Could not resolve host"; then
         result="DNS_Fail"
     elif echo "$curl_output" | grep -qi "Connection timed out"; then
         result="Timeout"
+    elif echo "$curl_output" | grep -qi "Failed to connect"; then
+        result="Failed"
     else
         result="Failed"
     fi
 
-    echo "$domain,$result" >> "$output_file"
+    row+=",$result"
 done
 
+echo "$row" >> "$output_file"
+
 echo ""
-echo "=============================================="
-echo "  Proxy Whitelist Test Completed"
-echo "  Output CSV: $output_file"
-echo "=============================================="
+echo "====================================================="
+echo " Proxy Pre-Install Whitelist Test Completed"
+echo " Output saved to: $output_file"
+echo "====================================================="
