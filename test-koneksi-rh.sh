@@ -30,7 +30,7 @@ declare -a domains_ports=(
 output_file="telnet_ocp_all_new.csv"
 
 # Add CSV headers
-proxy="http://<ip>:8080"
+proxy="http://10.210.9.250:8080"
 echo -n "NAME" > "$output_file"
 for entry in "${domains_ports[@]}"; do
     # Extract the domain name from each entry
