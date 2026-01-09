@@ -4,10 +4,10 @@ metadata:
   name: registry-pv
 spec:
   capacity:
-    storage: 300Gi
+    storage: 150Gi
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
     path: /storage/image-registry
-    server: 192.168.1.210
+    server: 10.100.24.60
