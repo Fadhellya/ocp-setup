@@ -1,5 +1,5 @@
 $TTL    604800
-@       IN      SOA     bastion.vti.corp. admin.vti.corp. (
+@       IN      SOA     bastion.vti.mantap. admin.vti.mantap. (
                   6     ; Serial
              604800     ; Refresh
               86400     ; Retry
@@ -8,22 +8,22 @@ $TTL    604800
 )
 
 ; name servers - NS records
-    IN      NS      bastion.vti.corp.
+    IN      NS      bastion.vti.mantap.
 
 ; name servers - PTR records
-60    IN    PTR    bastion.vti.corp.
+60    IN    PTR    bastion.vti.mantap.
 
 ; OpenShift Container Platform cluster - PTR records
-59    IN    PTR    bootstrap.ocp.vti.corp. 
-60    IN    PTR    bastion.ocp.vti.corp. 
-61    IN    PTR    node-1.ocp.vti.corp. 
-62    IN    PTR    node-2.ocp.vti.corp. 
-63    IN    PTR    node-3.ocp.vti.corp. 
-;<>    IN    PTR    <worker-name>.ocp.vti.corp. 
-;<>    IN    PTR    <worker-name>.ocp.vti.corp. 
-;<>    IN    PTR    <worker-name>.ocp.vti.corp. 
-;<>    IN    PTR    <infra-name>.ocp.vti.corp. 
-;<>    IN    PTR    <infra-name>.ocp.vti.corp. 
-;<>    IN    PTR    <infra-name>.ocp.vti.corp. 
-60    IN    PTR    api.ocp.vti.corp. 
-60    IN    PTR    api-int.ocp.vti.corp.
+59    IN    PTR    bootstrap.ocp.vti.mantap. 
+60    IN    PTR    bastion.ocp.vti.mantap. 
+61    IN    PTR    node-1.ocp.vti.mantap. 
+62    IN    PTR    node-2.ocp.vti.mantap. 
+63    IN    PTR    node-3.ocp.vti.mantap. 
+;<>    IN    PTR    <worker-name>.ocp.vti.mantap. 
+;<>    IN    PTR    <worker-name>.ocp.vti.mantap. 
+;<>    IN    PTR    <worker-name>.ocp.vti.mantap. 
+;<>    IN    PTR    <infra-name>.ocp.vti.mantap. 
+;<>    IN    PTR    <infra-name>.ocp.vti.mantap. 
+;<>    IN    PTR    <infra-name>.ocp.vti.mantap. 
+60    IN    PTR    api.ocp.vti.mantap. 
+60    IN    PTR    api-int.ocp.vti.mantap.
