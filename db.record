@@ -16,9 +16,9 @@ bastion.vti.corp.          IN      A       10.100.24.60
 ; OpenShift Container Platform cluster - A records
 bootstrap.ocp.vti.corp.          IN      A       10.100.24.59
 bastion.ocp.vti.corp.              IN      A       10.100.24.60
-master-1.ocp.vti.corp.           IN      A       10.100.24.61
-master-2.ocp.vti.corp.           IN      A       10.100.24.62
-master-3.ocp.vti.corp.           IN      A       10.100.24.63
+node-1.ocp.vti.corp.           IN      A       10.100.24.61
+node-2.ocp.vti.corp.           IN      A       10.100.24.62
+node-3.ocp.vti.corp.           IN      A       10.100.24.63
 ;<worker-name>.ocp.vti.corp.           IN      A       <normal-ip>
 ;<worker-name>.ocp.vti.corp.           IN      A       <normal-ip>
 ;<worker-name>.ocp.vti.corp.           IN      A       <normal-ip>
