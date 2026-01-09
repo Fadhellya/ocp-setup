@@ -1,5 +1,5 @@
 $TTL    604800
-@       IN      SOA     helper.<basedomain>. admin.<basedomain>. (
+@       IN      SOA     bastion.vti.lab. admin.vti.lab. (
                   6     ; Serial
              604800     ; Refresh
               86400     ; Retry
@@ -8,10 +8,10 @@ $TTL    604800
 )
 
 ; name servers - NS records
-    IN      NS      helper.<base-domain>.
+    IN      NS      bastion.<base-domain>.
 
 ; name servers - PTR records
-<angka-ip-blakang-helper>    IN    PTR    helper.<base-domain>.
+<angka-ip-blakang-bastion>    IN    PTR    bastion.<base-domain>.
 
 ; OpenShift Container Platform cluster - PTR records
 <angka-ip-blakang>    IN    PTR    bootstrap.<cluster-name>.<base-domain>. 
@@ -25,5 +25,5 @@ $TTL    604800
 <>    IN    PTR    <infra-name>.<cluster-name>.<base-domain>. 
 <>    IN    PTR    <infra-name>.<cluster-name>.<base-domain>. 
 <>    IN    PTR    <infra-name>.<cluster-name>.<base-domain>. 
-<ip-blakang-helper/lb>    IN    PTR    api.<cluster-name>.<base-domain>. 
+<ip-blakang-bastion/lb>    IN    PTR    api.<cluster-name>.<base-domain>. 
 <>    IN    PTR    api-int.<cluster-name>.<base-domain>.
