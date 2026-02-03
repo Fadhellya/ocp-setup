@@ -1,7 +1,7 @@
 apiVersion: v1
-baseDomain: vti.mantap #example : virtus.corp
+baseDomain: vti.corp #example : virtus.corp
 metadata:
-  name: ocp #example : ocp4
+  name: ocp4-drc #example : ocp4
 
 compute:
 - hyperthreading: Enabled
