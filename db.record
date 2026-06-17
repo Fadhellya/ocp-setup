@@ -1,5 +1,5 @@
 $TTL    604800
-@       IN      SOA     bastion.vti.mantap. admin.vti.mantap. (
+@       IN      SOA     bastion.pertamina.co.id. admin.pertamina.co.id. (
                   1     ; Serial
              604800     ; Refresh
               86400     ; Retry
@@ -11,22 +11,14 @@ $TTL    604800
     IN      NS      bastion
 
 ; name servers - A records
-bastion.vti.mantap.          IN      A       10.100.24.60
+bastion.pertamina.co.id.          IN      A       10.6.34.38
 
 ; OpenShift Container Platform cluster - A records
-bootstrap.ocp.vti.mantap.          IN      A       10.100.24.59
-bastion.ocp.vti.mantap.              IN      A       10.100.24.60
-node-1.ocp.vti.mantap.           IN      A       10.100.24.61
-node-2.ocp.vti.mantap.           IN      A       10.100.24.62
-node-3.ocp.vti.mantap.           IN      A       10.100.24.63
-;<worker-name>.ocp.vti.mantap.           IN      A       <normal-ip>
-;<worker-name>.ocp.vti.mantap.           IN      A       <normal-ip>
-;<worker-name>.ocp.vti.mantap.           IN      A       <normal-ip>
-;<infra-name>.ocp.vti.mantap.            IN      A       <normal-ip>
-;<infra-name>.ocp.vti.mantap.            IN      A       <normal-ip>
-;<infra-name>.ocp.vti.mantap.            IN      A       <normal-ip>
-
+bastion.ocp-poc.pertamina.co.id.              IN      A       10.6.34.38
+node-1.ocp-poc.pertamina.co.id.           IN      A       10.6.36.181
+node-2.ocp-poc.pertamina.co.id.           IN      A       10.6.36.182
+node-3.ocp-poc.pertamina.co.id.           IN      A       10.6.36.183
 ; OpenShift internal node IPs - A records
-api.ocp.vti.mantap.              IN      A       10.100.24.60
-api-int.ocp.vti.mantap.          IN      A       10.100.24.60
-*.apps.ocp.vti.mantap.           IN      A       10.100.24.60
+api.ocp-poc.pertamina.co.id.              IN      A       10.6.36.184
+api-int.ocp-poc.pertamina.co.id.          IN      A       10.6.36.184
+*.apps.ocp-poc.pertamina.co.id.           IN      A       10.6.36.185
