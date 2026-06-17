@@ -6,16 +6,11 @@ $TTL    604800
             2419200     ; Expire
              604800     ; Negative Cache TTL
 )
-
-; name servers - NS records
     IN      NS      bastion.pertamina.co.id.
 
-; name servers - PTR records
-38    IN    PTR    bastion.pertamina.co.id.
-
-; OpenShift Container Platform cluster - PTR records
-181    IN    PTR    node-1.ocp-poc.pertamina.co.id. 
-182    IN    PTR    node-2.ocp-poc.pertamina.co.id. 
-183    IN    PTR    node-3.ocp-poc.pertamina.co.id. 
-184    IN    PTR    api.ocp-poc.pertamina.co.id. 
+; OCP Nodes
+181    IN    PTR    node-1.ocp-poc.pertamina.co.id.
+182    IN    PTR    node-2.ocp-poc.pertamina.co.id.
+183    IN    PTR    node-3.ocp-poc.pertamina.co.id.
+184    IN    PTR    api.ocp-poc.pertamina.co.id.
 184    IN    PTR    api-int.ocp-poc.pertamina.co.id.
