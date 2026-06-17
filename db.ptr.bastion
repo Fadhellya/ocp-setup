@@ -1,0 +1,12 @@
+$TTL    604800
+@       IN      SOA     bastion.pertamina.co.id. admin.pertamina.co.id. (
+                  1     ; Serial
+             604800     ; Refresh
+              86400     ; Retry
+            2419200     ; Expire
+             604800     ; Negative Cache TTL
+)
+    IN      NS      bastion.pertamina.co.id.
+
+; Bastion
+38    IN    PTR    bastion.pertamina.co.id.
