@@ -3,13 +3,13 @@ zone "pertamina.co.id." {
     file "/etc/named/zones/db.record";
 };
 
-# Reverse zone untuk OCP Nodes (10.6.36.x)
+// Reverse zone untuk OCP Nodes (10.6.36.x)
 zone "36.6.10.in-addr.arpa" {
     type master;
     file "/etc/named/zones/db.ptr";
 };
 
-# Reverse zone untuk Bastion (10.6.34.x) ← TAMBAH INI
+// Reverse zone untuk Bastion (10.6.34.x) ← TAMBAH INI
 zone "34.6.10.in-addr.arpa" {
     type master;
     file "/etc/named/zones/db.ptr.bastion";
