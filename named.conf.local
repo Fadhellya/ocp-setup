@@ -1,9 +1,16 @@
-zone "pertamina.co.id." { #example virtus.corp
+zone "pertamina.co.id." {
     type master;
-    file "/etc/named/zones/db.record"; #sesuaikan dengan letak db.record
+    file "/etc/named/zones/db.record";
 };
 
-zone "36.6.10.in-addr.arpa" { #example 3 angka pertama ip-terbalik : 1.168.192 jika ip yang diinginkan 192.168.1.<..>
+# Reverse zone untuk OCP Nodes (10.6.36.x)
+zone "36.6.10.in-addr.arpa" {
     type master;
-    file "/etc/named/zones/db.ptr"; #sesuaikan dengan path db.ptr
+    file "/etc/named/zones/db.ptr";
+};
+
+# Reverse zone untuk Bastion (10.6.34.x) ← TAMBAH INI
+zone "34.6.10.in-addr.arpa" {
+    type master;
+    file "/etc/named/zones/db.ptr.bastion";
 };
