@@ -8,7 +8,7 @@ $TTL    604800
 )
 
 ; name servers - NS records
-    IN      NS      bastion
+    IN      NS      bastion.pertamina.co.id.
 
 ; name servers - A records
 bastion.pertamina.co.id.          IN      A       10.6.34.38
