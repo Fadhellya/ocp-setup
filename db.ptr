@@ -1,5 +1,5 @@
 $TTL    604800
-@       IN      SOA     bastion.vti.mantap. admin.vti.mantap. (
+@       IN      SOA     bastion.pertamina.co.id. admin.pertamina.co.id. (
                   6     ; Serial
              604800     ; Refresh
               86400     ; Retry
@@ -8,22 +8,14 @@ $TTL    604800
 )
 
 ; name servers - NS records
-    IN      NS      bastion.vti.mantap.
+    IN      NS      bastion.pertamina.co.id.
 
 ; name servers - PTR records
-60    IN    PTR    bastion.vti.mantap.
+38    IN    PTR    bastion.pertamina.co.id.
 
 ; OpenShift Container Platform cluster - PTR records
-59    IN    PTR    bootstrap.ocp.vti.mantap. 
-60    IN    PTR    bastion.ocp.vti.mantap. 
-61    IN    PTR    node-1.ocp.vti.mantap. 
-62    IN    PTR    node-2.ocp.vti.mantap. 
-63    IN    PTR    node-3.ocp.vti.mantap. 
-;<>    IN    PTR    <worker-name>.ocp.vti.mantap. 
-;<>    IN    PTR    <worker-name>.ocp.vti.mantap. 
-;<>    IN    PTR    <worker-name>.ocp.vti.mantap. 
-;<>    IN    PTR    <infra-name>.ocp.vti.mantap. 
-;<>    IN    PTR    <infra-name>.ocp.vti.mantap. 
-;<>    IN    PTR    <infra-name>.ocp.vti.mantap. 
-60    IN    PTR    api.ocp.vti.mantap. 
-60    IN    PTR    api-int.ocp.vti.mantap.
+181    IN    PTR    node-1.ocp-poc.pertamina.co.id. 
+182    IN    PTR    node-2.ocp-poc.pertamina.co.id. 
+183    IN    PTR    node-3.ocp-poc.pertamina.co.id. 
+184    IN    PTR    api.ocp-poc.pertamina.co.id. 
+184    IN    PTR    api-int.ocp-poc.pertamina.co.id.
